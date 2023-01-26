@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController weightController = TextEditingController();
-  TextEditingController heightController = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
 
   double _result = 0.0;
   String _message = "";
