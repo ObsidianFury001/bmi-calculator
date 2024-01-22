@@ -20,9 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // Step 2 <- SEE HERE
-    weightController.text = '0';
-    heightController.text = '0';
+    weightController.text = '';
+    heightController.text = '';
   }
 
   @override
@@ -39,21 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(children: [
           const SizedBox(height: 75,),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                width: 150,
+              SizedBox(
+                width: 350,
                 child: TextField(
                   textAlign: TextAlign.center,
                   controller: weightController,
-                  style: TextStyle(
-                      fontSize: 35,
+                  style: const TextStyle(
+                      fontSize: 40,
                       color: accent
                   ),
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(
-                      hintText: "Weight",
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                      hintText: "Weight (kg)",
                       border: UnderlineInputBorder(
                           borderSide: BorderSide(color: primary)
                       ),
@@ -63,18 +62,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Container(
-                width: 150,
+              const SizedBox(height: 60,),
+              SizedBox(
+                width: 350,
                 child: TextField(
                   textAlign: TextAlign.center,
                   controller: heightController,
-                  style: TextStyle(
-                      fontSize: 35,
+                  style: const TextStyle(
+                      fontSize: 40,
                       color: accent
                   ),
-                  keyboardType: TextInputType.numberWithOptions(decimal: true),
-                  decoration: InputDecoration(
-                      hintText: "Height",
+                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  decoration: const InputDecoration(
+                      hintText: "Height (cm)",
                       border: UnderlineInputBorder(
                           borderSide: BorderSide(color: primary)
                       ),
@@ -87,18 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           const SizedBox(height: 60,),
-          Container(
+          SizedBox(
             width: 250,
             height: 65,
             child: TextButton(
               onPressed: () {
                 setState(() {
-                  print("+++++++++++ Weight " + weightController.text.toString());
-                  print("=========== Height " + heightController.text.toString());
+                  print("+++++++++++ Weight ${weightController.text}");
+                  print("=========== Height ${heightController.text}");
 
-                  var h = double.parse(heightController.text);
-                  var w = double.parse(weightController.text);
-                  if( h > 100 ){ h = h / 100; }
+                  var h = heightController.text.isNotEmpty? double.parse(heightController.text) : 0.00;
+                  var w = weightController.text.isNotEmpty? double.parse(weightController.text) : 0.00;
+                  if ( h > 100 ){ h = h / 100; }
                   print(h);
                   _result = w / (h * h);
 
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           const SizedBox(height: 40,),
-          Container(
+          SizedBox(
             width: 200,
             height: 70,
             child: Text(
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 30,),
           Visibility(
             visible: _message.isNotEmpty,
-            child: Container(
+            child: SizedBox(
               width: 400,
               height: 70,
               child: Text(
@@ -156,23 +156,23 @@ class _HomeScreenState extends State<HomeScreen> {
 
           const SizedBox(height: 50,),
           const Bar(barWidth: 64, barAlignment: MainAxisAlignment.end),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 20,),
           const Bar(barWidth: 128, barAlignment: MainAxisAlignment.end),
           const SizedBox(height: 10,),
           const Bar(barWidth: 25, barAlignment: MainAxisAlignment.end),
           const SizedBox(height: 10,),
           const Bar(barWidth: 90, barAlignment: MainAxisAlignment.end),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 20,),
           const Bar(barWidth: 40, barAlignment: MainAxisAlignment.end),
           const SizedBox(height: 10,),
 
           const Bar(barWidth: 90, barAlignment: MainAxisAlignment.start),
-          const SizedBox(height: 10,),
+          const SizedBox(height: 30,),
           const Bar(barWidth: 40, barAlignment: MainAxisAlignment.start),
           const SizedBox(height: 10,),
-          const Bar(barWidth: 25, barAlignment: MainAxisAlignment.start),
-          const SizedBox(height: 10,),
           const Bar(barWidth: 128, barAlignment: MainAxisAlignment.start),
+          const SizedBox(height: 10,),
+          const Bar(barWidth: 25, barAlignment: MainAxisAlignment.start),
           const SizedBox(height: 10,),
           const Bar(barWidth: 64, barAlignment: MainAxisAlignment.start),
           const SizedBox(height: 30,),
